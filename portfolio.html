@@ -1,0 +1,1264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puvvada Nikhil Sai Venkat — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+     EDIT ME: all personal content lives in the DATA block inside
+     the <script> tag near the bottom of this file. Colors and
+     type live in the :root variables right below.
+     ============================================================ */
+      :root {
+        --bg: #ffffff;
+        --bg-panel: #f6f4ff;
+        --bg-panel-2: #f1eeff;
+        --bg-mint: #eaf4ff;
+        --text: #171623;
+        --text-muted: #6e6c8a;
+        --text-dim: #9694ac;
+        --accent: #6c4cfa;
+        --accent-soft: #6c4cfa14;
+        --accent-2: #ff6f91;
+        --accent-2-soft: #ff6f9114;
+        --accent-3: #00c2a8;
+        --accent-3-soft: #00c2a814;
+        --border: #e7e4f5;
+        --sidebar-w: 300px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Space Grotesk", "Inter", sans-serif;
+        font-weight: 600;
+        line-height: 1.15;
+        margin: 0 0 0.5em;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      p {
+        margin: 0 0 1em;
+        color: var(--text-muted);
+        max-width: 62ch;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .accent-word {
+        color: var(--accent);
+      }
+
+      /* -------- layout -------- */
+      .shell {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* -------- sidebar -------- */
+      .sidebar {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        background: var(--bg-panel);
+        border-right: 1px solid var(--border);
+        padding: 40px 32px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        gap: 0;
+      }
+      .avatar {
+        width: 84px;
+        height: 84px;
+        border-radius: 26px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        color: #fff;
+        margin-bottom: 20px;
+        box-shadow: 0 14px 28px -10px #6c4cfa4d;
+        /* To use a real photo: replace this div's content with
+       <img src="your-photo.jpg" style="width:100%;height:100%;
+       border-radius:26px;object-fit:cover;"> */
+      }
+      .sidebar h1 {
+        font-size: 1.35rem;
+        margin-bottom: 4px;
+      }
+      .sidebar .tagline {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+        margin-bottom: 28px;
+      }
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.76rem;
+        color: #16a893;
+        background: var(--accent-3-soft);
+        border: 1px solid #00c2a833;
+        padding: 5px 10px;
+        border-radius: 100px;
+        margin-bottom: 28px;
+        width: fit-content;
+      }
+      .status-pill::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent-3);
+        flex-shrink: 0;
+      }
+
+      nav.side-nav {
+        margin-bottom: 24px;
+      }
+      nav.side-nav li {
+        margin-bottom: 2px;
+      }
+      nav.side-nav a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 9px 10px;
+        border-radius: 8px;
+        color: var(--text-dim);
+        font-size: 0.94rem;
+        font-weight: 500;
+        border-left: 2px solid transparent;
+        transition:
+          color 0.15s ease,
+          border-color 0.15s ease,
+          background 0.15s ease;
+      }
+      nav.side-nav a .idx {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--text-dim);
+        opacity: 0.7;
+      }
+      nav.side-nav a:hover {
+        color: var(--text);
+      }
+      nav.side-nav a.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      nav.side-nav a.active .idx {
+        color: var(--accent);
+        opacity: 1;
+      }
+
+      .sidebar-foot {
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        margin-top: 24px;
+      }
+      .social-row {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .social-row a {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .social-row a:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .social-row svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 16px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid transparent;
+        width: 100%;
+        transition:
+          transform 0.12s ease,
+          background 0.15s ease,
+          border-color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 10px 24px -10px #6c4cfa66;
+      }
+      .btn-primary:hover {
+        background: #5c3ce6;
+      }
+      .btn-ghost {
+        background: #fff;
+        color: var(--text);
+        border-color: var(--border);
+        margin-top: 0;
+      }
+      .sidebar-foot .btn + .btn {
+        margin-top: 10px;
+      }
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* -------- hamburger (mobile) -------- */
+      .topbar {
+        display: none;
+      }
+      .hamburger {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+      }
+      .hamburger span {
+        width: 16px;
+        height: 2px;
+        background: var(--text);
+        display: block;
+      }
+
+      /* -------- main content -------- */
+      main {
+        flex: 1;
+        min-width: 0;
+        padding: 64px 64px 90px;
+        max-width: 980px;
+      }
+      section {
+        padding-top: 24px;
+        margin-bottom: 88px;
+        scroll-margin-top: 32px;
+      }
+      section:last-of-type {
+        margin-bottom: 40px;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      /* hero */
+      .hero-inner {
+        display: flex;
+        gap: 52px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .hero-text {
+        flex: 1 1 380px;
+      }
+      .hero-text h2 {
+        font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+        max-width: 17ch;
+      }
+      .hero-text p {
+        font-size: 1.03rem;
+        max-width: 56ch;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 12px;
+        margin-top: 28px;
+        flex-wrap: wrap;
+      }
+      .hero-ctas .btn {
+        width: auto;
+        padding: 12px 22px;
+      }
+      .hero-visual {
+        flex: 1 1 260px;
+        max-width: 320px;
+      }
+      .hero-visual-card {
+        background: var(--bg-mint);
+        border-radius: 32px;
+        padding: 36px;
+        min-height: 260px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-visual-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 46px;
+        font-weight: 700;
+        font-family: "Space Grotesk", sans-serif;
+        box-shadow: 0 20px 40px -14px #6c4cfa55;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-visual svg.deco {
+        position: absolute;
+        opacity: 0.9;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 40px;
+        margin-top: 52px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+        flex-wrap: wrap;
+      }
+      .hero-stats .stat b {
+        display: block;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.6rem;
+        color: var(--accent);
+      }
+      .hero-stats .stat span {
+        font-size: 0.82rem;
+        color: var(--text-dim);
+      }
+
+      /* skills */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+      .skill-card {
+        background: var(--bg-panel-2);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 22px 22px 24px;
+      }
+      .skill-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+      .skill-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+      .skill-card h3 {
+        font-size: 0.98rem;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .skill-tags span {
+        font-size: 0.78rem;
+        padding: 5px 10px;
+        border-radius: 7px;
+        background: #fff;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+      }
+
+      /* projects */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .project {
+        background: var(--bg-panel-2);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px;
+      }
+      .project-badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 100px;
+        margin-bottom: 14px;
+      }
+      .project.cat-data .project-badge {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .project.cat-dev .project-badge {
+        background: var(--accent-2-soft);
+        color: #d6416a;
+      }
+      .project.cat-ml .project-badge {
+        background: var(--accent-3-soft);
+        color: #128f7a;
+      }
+      .project-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .project-head h3 {
+        font-size: 1.04rem;
+        margin-bottom: 8px;
+      }
+      .project-date {
+        color: var(--text-dim);
+        font-size: 0.78rem;
+        font-family: "JetBrains Mono", monospace;
+        white-space: nowrap;
+      }
+      .project p {
+        margin: 0 0 14px;
+        font-size: 0.92rem;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 14px;
+      }
+      .project-tags span {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        background: #fff;
+        border: 1px solid var(--border);
+        padding: 3px 9px;
+        border-radius: 6px;
+      }
+      .project-link {
+        font-size: 0.84rem;
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .project-link:hover {
+        text-decoration: underline;
+      }
+
+      /* education / experience */
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 20px;
+        padding-bottom: 30px;
+        position: relative;
+      }
+      .timeline-date {
+        color: var(--text-dim);
+        font-size: 0.82rem;
+        font-family: "JetBrains Mono", monospace;
+        padding-top: 2px;
+      }
+      .timeline-body h3 {
+        font-size: 1.02rem;
+        margin-bottom: 3px;
+      }
+      .timeline-body .org {
+        color: var(--accent);
+        font-size: 0.88rem;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 500;
+      }
+      .timeline-body p {
+        font-size: 0.92rem;
+      }
+
+      /* achievements */
+      .ach-list li {
+        display: flex;
+        gap: 12px;
+        font-size: 0.94rem;
+        color: var(--text-muted);
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 10px;
+        background: var(--bg-panel-2);
+      }
+      .ach-list li::before {
+        content: "★";
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* contact */
+      .contact-grid {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+      .contact-card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1 1 220px;
+        background: var(--bg-panel-2);
+        transition:
+          border-color 0.15s,
+          transform 0.12s;
+      }
+      .contact-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .contact-card .ic {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .contact-card .ic svg {
+        width: 17px;
+        height: 17px;
+        color: var(--accent);
+      }
+      .contact-card .label {
+        font-size: 0.74rem;
+        color: var(--text-dim);
+      }
+      .contact-card .value {
+        font-size: 0.92rem;
+        font-weight: 500;
+      }
+
+      footer {
+        padding: 28px 64px 40px;
+        color: var(--text-dim);
+        font-size: 0.8rem;
+        border-top: 1px solid var(--border);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
+      }
+
+      /* -------- mobile -------- */
+      @media (max-width: 900px) {
+        .shell {
+          flex-direction: column;
+        }
+        .sidebar {
+          position: sticky;
+          top: 0;
+          height: auto;
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+          padding: 0;
+          z-index: 50;
+        }
+        .topbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 20px;
+          background: var(--bg-panel);
+        }
+        .topbar-id {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .topbar-id .avatar {
+          width: 36px;
+          height: 36px;
+          font-size: 14px;
+          margin: 0;
+          border-radius: 12px;
+        }
+        .topbar-id span {
+          font-family: "Space Grotesk", sans-serif;
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
+        .sidebar-body {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.25s ease;
+          background: var(--bg-panel);
+          padding: 0 24px;
+        }
+        .sidebar.open .sidebar-body {
+          max-height: 640px;
+          padding: 8px 24px 24px;
+        }
+        .sidebar .avatar {
+          display: none;
+        }
+        .sidebar > h1,
+        .sidebar > .tagline,
+        .sidebar > .status-pill {
+          display: none;
+        }
+        main {
+          padding: 40px 24px 70px;
+        }
+        section {
+          margin-bottom: 64px;
+        }
+        footer {
+          padding: 24px;
+        }
+        .timeline-item {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+        .hero-visual {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="topbar">
+          <div class="topbar-id">
+            <div class="avatar" id="avatarTop">
+              <img
+                src="nikil.jpeg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 12px;
+                  object-fit: cover;
+                "
+              />
+            </div>
+            <span id="nameTop"></span>
+          </div>
+          <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+        <div class="sidebar-body" id="sidebarBody">
+          <div class="avatar" id="avatarMain">
+            <img
+              src="nikil.jpeg"
+              style="
+                width: 100%;
+                height: 100%;
+                border-radius: 26px;
+                object-fit: cover;
+              "
+            />
+          </div>
+          <h1 id="nameMain"></h1>
+          <div class="tagline" id="taglineMain"></div>
+          <div class="status-pill" id="statusPill"></div>
+
+          <nav class="side-nav">
+            <ul id="navList"></ul>
+          </nav>
+
+          <div class="sidebar-foot">
+            <div class="social-row" id="socialRow"></div>
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <a
+                href="Puvvada_Nikhil_Sai_Resume.pdf"
+                download
+                class="btn btn-primary"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+                </svg>
+                Download Resume
+              </a>
+              <a href="#contact" class="btn btn-ghost">Get in touch</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <section id="about" class="hero">
+          <span class="eyebrow mono">// about</span>
+          <div class="hero-inner">
+            <div class="hero-text">
+              <h2 id="heroHeadline"></h2>
+              <p id="heroBody"></p>
+              <div class="hero-ctas">
+                <a
+                  href="Puvvada_Nikhil_Sai_Resume.pdf"
+                  download
+                  class="btn btn-primary"
+                  >Download Resume</a
+                >
+                <a href="#projects" class="btn btn-ghost" style="width: auto"
+                  >See my projects</a
+                >
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="hero-visual-card">
+                <svg
+                  class="deco"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="var(--accent-2)"
+                  style="top: 22px; left: 26px"
+                >
+                  <path
+                    d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"
+                  />
+                </svg>
+                <svg
+                  class="deco"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="var(--accent)"
+                  style="bottom: 30px; right: 30px"
+                >
+                  <path
+                    d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"
+                  />
+                </svg>
+                <svg
+                  class="deco"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="var(--accent-3)"
+                  style="top: 40px; right: 50px"
+                >
+                  <circle cx="12" cy="12" r="12" />
+                </svg>
+                <div class="hero-visual-avatar" id="avatarHero">
+                  <img
+                    src="nikil.jpeg"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    "
+                  />
+                </div>
+              </div>
+              <div class="hero-stats" id="heroStats"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills">
+          <span class="eyebrow mono">// skills</span>
+          <h2>What I work with</h2>
+          <p>
+            Grouped by area — I move between data work and application dev
+            depending on what the problem needs.
+          </p>
+          <div class="skills-grid" id="skillsWrap"></div>
+        </section>
+
+        <section id="projects">
+          <span class="eyebrow mono">// projects</span>
+          <h2>Things I've built</h2>
+          <p>
+            A mix of data pipelines, dashboards, and applications — mostly
+            self-directed, built to learn by shipping.
+          </p>
+          <div class="projects-grid" id="projectsWrap"></div>
+        </section>
+
+        <section id="education">
+          <span class="eyebrow mono">// education &amp; experience</span>
+          <h2>Background</h2>
+          <div id="eduWrap"></div>
+        </section>
+
+        <section id="achievements">
+          <span class="eyebrow mono">// achievements</span>
+          <h2>Along the way</h2>
+          <ul class="ach-list" id="achWrap"></ul>
+        </section>
+
+        <section id="contact">
+          <span class="eyebrow mono">// contact</span>
+          <h2>Let's talk</h2>
+          <p>
+            Open to Data Analyst, Software Engineer, Python Developer and
+            Business Analyst roles. Reach out directly — I reply fast.
+          </p>
+          <div class="contact-grid" id="contactWrap"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <span id="footerText"></span>
+    </footer>
+
+    <script>
+      /* ============================================================
+   DATA — edit everything here. The page below just renders this.
+   ============================================================ */
+      const DATA = {
+        name: "Puvvada Nikhil Sai Venkat",
+        initials: "PN",
+        tagline: "Software Engineer & Data Analyst",
+        status:
+          "Open to Software Engineer & Data Analyst-Fresher & willing to relocate",
+
+        hero: {
+          // wrap any phrase in <span class="accent-word">...</span> to color it
+          headline:
+            "Hi, I'm <span class='accent-word'>Nikhil Sai Venkat</span>",
+          body: "I'm an Electronics & Communication Engineering graduate who spent the last two years outside the syllabus — building ETL pipelines, SQL dashboards, and full-stack apps. I'm equally comfortable cleaning a messy dataset in Pandas or shipping a Django front end, and I'm now looking for my first full-time role as a Data Analyst, Software Engineer, Python Developer, or Business Analyst.",
+          stats: [
+            { value: "6", label: "projects shipped" },
+            { value: "8.0", label: "B.Tech GPA" },
+            { value: "3", label: "Tech Domains" },
+          ],
+        },
+
+        socials: [
+          {
+            name: "Email",
+            href: "mailto:nikilpuvvada@gmail.com",
+            icon: "mail",
+          },
+          {
+            name: "LinkedIn",
+            href: "https://www.linkedin.com/in/puvvadanikhilsai06/",
+            icon: "linkedin",
+          },
+          {
+            name: "GitHub",
+            href: "https://github.com/NIKHIL-PUVVADA",
+            icon: "github",
+          },
+          { name: "Phone", href: "tel:+919640783558", icon: "phone" },
+        ],
+
+        skillGroups: [
+          {
+            title: "Languages",
+            icon: "code",
+            skills: ["Python", "SQL", "Java"],
+          },
+          {
+            title: "Data & Databases",
+            icon: "database",
+            skills: [
+              "PostgreSQL",
+              "MySQL",
+              "Snowflake",
+              "PySpark (learning)",
+              "Pandas",
+            ],
+          },
+          {
+            title: "BI & Visualization",
+            icon: "chart",
+            skills: ["Power BI", "Tableau"],
+          },
+          {
+            title: "Web Development",
+            icon: "browser",
+            skills: ["HTML", "CSS", "Bootstrap", "Django", "React"],
+          },
+          {
+            title: "Testing & Design",
+            icon: "check",
+            skills: ["Selenium", "Figma"],
+          },
+          {
+            title: "Tools",
+            icon: "tool",
+            skills: ["Git / GitHub", "VS Code", "OpenPyXL"],
+          },
+        ],
+
+        projects: [
+          {
+            title: "Retail Sales Analytics Pipeline",
+            date: "2025",
+            category: "data",
+            badge: "Data",
+            description:
+              "End-to-end analytics pipeline loading customer, product, and transaction data into a relational database, analyzed with SQL joins, aggregations, and window functions. Built an interactive Power BI dashboard to surface revenue trends and high-value customer segments.",
+            tags: ["Python", "Pandas", "SQL", "Power BI"],
+            link: "https://github.com/NIKHIL-PUVVADA",
+          },
+          {
+            title: "End-to-End E-Commerce Data Warehouse Pipeline",
+            date: "2025",
+            category: "data",
+            badge: "Data",
+            description:
+              "ETL pipeline in Python cleaning and loading e-commerce data into PostgreSQL, then migrated into a Snowflake star schema with a 1M-row fact table. SQL analysis identified Health & Fitness as the top-performing category; results visualized in Power BI.",
+            tags: ["PostgreSQL", "SQL", "Snowflake", "Power BI"],
+            link: "https://github.com/NIKHIL-PUVVADA",
+          },
+          {
+            title: "Python Automation Tool for Expense Reporting",
+            date: "2024",
+            category: "dev",
+            badge: "Automation",
+            description:
+              "Automation tool that ingests raw expense data, validates and cleans it, aggregates by department and category, and generates a formatted multi-sheet Excel report automatically — with logging and error handling for unattended, scheduled runs.",
+            tags: ["Python", "Pandas", "OpenPyXL"],
+            link: "https://github.com/NIKHIL-PUVVADA",
+          },
+          {
+            title: "HR Analytics Using SQL",
+            date: "May 2025",
+            category: "data",
+            badge: "Data",
+            description:
+              "Analyzed employee data to identify factors affecting attrition — structured database tables, SQL queries with joins and aggregations across age, salary, and education, and a dashboard highlighting key attrition drivers.",
+            tags: ["SQL", "Database Design", "Dashboards"],
+            link: "https://github.com/NIKHIL-PUVVADA",
+          },
+          {
+            title: "E-Commerce ETL Pipeline",
+            date: "Oct 2024",
+            category: "data",
+            badge: "Data",
+            description:
+              "Extracted customer, product, and transaction data from structured sources, cleaned and transformed it in Python, and loaded it into PostgreSQL for analysis — with live values displayed through a connected Blynk IoT app.",
+            tags: ["Python", "Pandas", "PostgreSQL", "IoT"],
+            link: "https://github.com/NIKHIL-PUVVADA",
+          },
+          {
+            title: "Bone Tumor Detection & Fracture Risk Assessment",
+            date: "2024",
+            category: "ml",
+            badge: "Machine Learning",
+            description:
+              "Automated diagnosis system for X-ray images combining CNN-based feature extraction, ROI segmentation, autoencoder-based dimensionality reduction, and a Random Forest classifier for fracture risk assessment.",
+            tags: ["Deep Learning", "CNN", "Random Forest"],
+            link: "https://github.com/NIKHIL-PUVVADA",
+          },
+        ],
+
+        education: [
+          {
+            date: "2022 — 2026",
+            title: "B.Tech, Electronics & Communication Engineering",
+            org: "JNTU Kakinada · Vishnu Institute of Technology · GPA 8.0",
+            body: "Graduating May 2026.",
+          },
+          {
+            date: "2020 — 2023",
+            title: "Diploma",
+            org: "SBTET · Swarnandhra College of Engineering & Technology · GPA 8.3",
+            body: "Completed April 2023.",
+          },
+          {
+            date: "Aug 2022 — Jan 2023",
+            title: "Trainee, Cisco",
+            org: "Networking",
+            body: "Worked on network analysis, packet tracing, and troubleshooting — analyzing traffic and optimizing performance with industry-standard tools to build a working foundation in routing and switching.",
+          },
+        ],
+
+        achievements: [
+          "Qualified for the Google Developer Student Clubs (GDSC) Final Round.",
+          'Secured 2nd Prize in the VEDA event for the "Electricity Management Using IoT" project.',
+        ],
+
+        contact: [
+          {
+            label: "Email",
+            value: "nikilpuvvada@gmail.com",
+            href: "mailto:nikilpuvvada@gmail.com",
+            icon: "mail",
+          },
+          {
+            label: "Phone",
+            value: "+91 96407 83558",
+            href: "tel:+919640783558",
+            icon: "phone",
+          },
+          {
+            label: "LinkedIn",
+            value: "puvvadanikhilsai06",
+            href: "https://www.linkedin.com/in/puvvadanikhilsai06/",
+            icon: "linkedin",
+          },
+          {
+            label: "GitHub",
+            value: "NIKHIL-PUVVADA",
+            href: "https://github.com/NIKHIL-PUVVADA",
+            icon: "github",
+          },
+        ],
+
+        resumeFile: "Puvvada_Nikhil_Sai_Resume.pdf",
+      };
+
+      /* ============================================================
+   ICONS
+   ============================================================ */
+      const ICONS = {
+        mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>',
+        linkedin:
+          '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></svg>',
+        github:
+          '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.27 7.77 10.77.57.1.78-.25.78-.55v-2.15c-3.16.7-3.83-1.35-3.83-1.35-.52-1.3-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.75 2.65 1.24 3.3.95.1-.73.4-1.24.72-1.53-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.66 5.31-5.19 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A11.02 11.02 0 0 0 23 11.52C23 5.24 18.27.5 12 .5z"/></svg>',
+        phone:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.8 2.1z"/></svg>',
+        code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>',
+        database:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>',
+        chart:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>',
+        browser:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>',
+        check:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>',
+        tool: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2z"/></svg>',
+      };
+
+      const NAV_ITEMS = [
+        { id: "about", label: "About" },
+        { id: "skills", label: "Skills" },
+        { id: "projects", label: "Projects" },
+        { id: "education", label: "Background" },
+        { id: "achievements", label: "Achievements" },
+        { id: "contact", label: "Contact" },
+      ];
+
+      /* ============================================================
+   RENDER
+   ============================================================ */
+      document.getElementById("nameTop").textContent = DATA.name;
+      document.getElementById("nameMain").textContent = DATA.name;
+      document.getElementById("taglineMain").textContent = DATA.tagline;
+      document.getElementById("statusPill").textContent = DATA.status;
+      document.getElementById("heroHeadline").innerHTML = DATA.hero.headline;
+      document.getElementById("heroBody").textContent = DATA.hero.body;
+      document.getElementById("footerText").textContent =
+        `${DATA.name} — built with care, ${new Date().getFullYear()}.`;
+
+      // nav
+      const navList = document.getElementById("navList");
+      navList.innerHTML = NAV_ITEMS.map(
+        (n, i) => `
+  <li><a href="#${n.id}" data-id="${n.id}"><span class="idx mono">${String(i + 1).padStart(2, "0")}</span>${n.label}</a></li>
+`,
+      ).join("");
+
+      // socials
+      document.getElementById("socialRow").innerHTML = DATA.socials
+        .map(
+          (s) => `
+  <a href="${s.href}" target="_blank" rel="noopener" title="${s.name}">${ICONS[s.icon] || ""}</a>
+`,
+        )
+        .join("");
+
+      // hero stats
+      document.getElementById("heroStats").innerHTML = DATA.hero.stats
+        .map(
+          (s) => `
+  <div class="stat"><b>${s.value}</b><span>${s.label}</span></div>
+`,
+        )
+        .join("");
+
+      // skills
+      document.getElementById("skillsWrap").innerHTML = DATA.skillGroups
+        .map(
+          (g) => `
+  <div class="skill-card">
+    <div class="skill-icon">${ICONS[g.icon] || ""}</div>
+    <h3>${g.title}</h3>
+    <div class="skill-tags">${g.skills.map((s) => `<span>${s}</span>`).join("")}</div>
+  </div>
+`,
+        )
+        .join("");
+
+      // projects
+      document.getElementById("projectsWrap").innerHTML = DATA.projects
+        .map(
+          (p) => `
+  <div class="project cat-${p.category}">
+    <span class="project-badge">${p.badge}</span>
+    <div class="project-head">
+      <h3>${p.title}</h3>
+      <span class="project-date">${p.date}</span>
+    </div>
+    <p>${p.description}</p>
+    <div class="project-tags">${p.tags.map((t) => `<span>${t}</span>`).join("")}</div>
+    ${p.link ? `<a class="project-link" href="${p.link}" target="_blank" rel="noopener">View on GitHub ↗</a>` : ""}
+  </div>
+`,
+        )
+        .join("");
+
+      // education / experience
+      document.getElementById("eduWrap").innerHTML = DATA.education
+        .map(
+          (e) => `
+  <div class="timeline-item">
+    <div class="timeline-date mono">${e.date}</div>
+    <div class="timeline-body">
+      <h3>${e.title}</h3>
+      <span class="org">${e.org}</span>
+      <p>${e.body}</p>
+    </div>
+  </div>
+`,
+        )
+        .join("");
+
+      // achievements
+      document.getElementById("achWrap").innerHTML = DATA.achievements
+        .map((a) => `<li>${a}</li>`)
+        .join("");
+
+      // contact
+      document.getElementById("contactWrap").innerHTML = DATA.contact
+        .map(
+          (c) => `
+  <a class="contact-card" href="${c.href}" target="_blank" rel="noopener">
+    <div class="ic">${ICONS[c.icon] || ""}</div>
+    <div>
+      <div class="label">${c.label}</div>
+      <div class="value">${c.value}</div>
+    </div>
+  </a>
+`,
+        )
+        .join("");
+
+      /* ============================================================
+   INTERACTIVITY: mobile menu + scroll spy
+   ============================================================ */
+      const sidebar = document.getElementById("sidebar");
+      document.getElementById("hamburgerBtn").addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+      });
+      document.querySelectorAll(".side-nav a").forEach((a) => {
+        a.addEventListener("click", () => sidebar.classList.remove("open"));
+      });
+
+      const sections = NAV_ITEMS.map((n) => document.getElementById(n.id));
+      const navLinks = Array.from(document.querySelectorAll(".side-nav a"));
+      const spy = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach((l) =>
+                l.classList.toggle("active", l.dataset.id === id),
+              );
+            }
+          });
+        },
+        { rootMargin: "-20% 0px -70% 0px" },
+      );
+      sections.forEach((s) => spy.observe(s));
+    </script>
+  </body>
+</html>
